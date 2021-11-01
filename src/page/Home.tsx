@@ -2,8 +2,8 @@ import CourseContainer from '../component/CourseContainer';
 
 const image = 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png';
 const courseList = [{
-  instructor: 'string',
-  name: 'string',
+  instructor: 'ผศ. ดร.ธนาธร ทะนานทอง',
+  name: 'Data Mining Algorithms ขั้นตอนวิธีสำหรับเหมืองข้อมูล',
   image,
   startDate: new Date(),
   endDate: new Date(),

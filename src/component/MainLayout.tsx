@@ -1,4 +1,4 @@
-import { Menu } from 'antd';
+import { Col, Menu } from 'antd';
 import Layout, {
   Content, Header,
 } from 'antd/lib/layout/layout';
@@ -7,7 +7,18 @@ import {
   ReactElement, ReactNode,
 } from 'react';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { MenuOutlined } from '@ant-design/icons';
+
 import { AuthActions } from '../redux/actions/authAction';
+
+const Logo = styled.div`
+  float: left;
+  width: 120px;
+  height: 31px;
+ 
+`;
 
 type MainLayoutProps = {
   children: ReactNode
@@ -16,19 +27,32 @@ type MainLayoutProps = {
 const MainLayout = ({ children }:MainLayoutProps):ReactElement => {
   const authDispatch = useDispatch<Dispatch<AuthActions>>();
 
-  const handlerLogout = () => {
+  const handleLogout = () => {
     authDispatch({ type: 'LOGOUT' });
   };
+
   return (
     <Layout style={{ background: 'white' }}>
       <Header>
-        <div className="logo" />
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} style={{ float: 'right' }}>
-          <Menu.Item>MyCourse</Menu.Item>
-          <Menu.Item>Profile</Menu.Item>
-          <Menu.Item onClick={handlerLogout}>Logout</Menu.Item>
-
-        </Menu>
+        <Link to="/">
+          <Logo>My App </Logo>
+        </Link>
+        <Col>
+          <Menu
+            theme="dark"
+            mode="horizontal"
+            style={{ float: 'right' }}
+            overflowedIndicator={
+              <MenuOutlined />
+          }
+          >
+            <Menu.Item>My Course</Menu.Item>
+            <Menu.Item>
+              <Link to="/profile">Profile</Link>
+            </Menu.Item>
+            <Menu.Item onClick={handleLogout}>Logout</Menu.Item>
+          </Menu>
+        </Col>
 
       </Header>
       <Content style={{ marginTop: '20px' }}>

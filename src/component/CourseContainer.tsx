@@ -1,7 +1,8 @@
 import {
-  Card, Col, Row,
+  Col, Row,
 } from 'antd';
 import CourseCard from './CourseCard';
+import CourseCardMobile from './CourseCardMobile';
 
 type CourseContainerProps = {
   courseList:{
@@ -17,35 +18,13 @@ const CourseContainer = ({ courseList }:CourseContainerProps) => (
   <Row>
     <Col xs={24} xl={0}>
       <Col xs={{ span: 22, offset: 1 }} md={{ span: 24, offset: 0 }}>
-        <Card>
-          test
-        </Card>
+        {
+        courseList.map((props) => (
+          <CourseCardMobile {...props} />
+        ))
+      }
       </Col>
-      <Col xs={{ span: 22, offset: 1 }} md={{ span: 24, offset: 0 }}>
-        <Card>
-          test
-        </Card>
-      </Col>
-      <Col xs={{ span: 22, offset: 1 }} md={{ span: 24, offset: 0 }}>
-        <Card>
-          test
-        </Card>
-      </Col>
-      <Col xs={{ span: 22, offset: 1 }} md={{ span: 24, offset: 0 }}>
-        <Card>
-          test
-        </Card>
-      </Col>
-      <Col xs={{ span: 22, offset: 1 }} md={{ span: 24, offset: 0 }}>
-        <Card>
-          test
-        </Card>
-      </Col>
-      <Col xs={{ span: 22, offset: 1 }} md={{ span: 24, offset: 0 }}>
-        <Card>
-          test
-        </Card>
-      </Col>
+
     </Col>
     <Col
       xs={0}

@@ -7,6 +7,7 @@ import 'antd/dist/antd.css';
 import Home from './page/Home';
 import ProtectedRoute from './component/ProtectedRoute';
 import MainLayout from './component/MainLayout';
+import Profile from './page/Profile';
 
 function App() {
   return (
@@ -16,6 +17,8 @@ function App() {
           <Route exact path="/login" component={Login} />
           <MainLayout>
             <ProtectedRoute exact path="/" component={Home} />
+            <ProtectedRoute exact path="/profile" component={Profile} />
+
           </MainLayout>
 
         </Switch>
