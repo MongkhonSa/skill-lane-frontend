@@ -8,6 +8,7 @@ import Home from './page/Home';
 import ProtectedRoute from './component/ProtectedRoute';
 import MainLayout from './component/MainLayout';
 import Profile from './page/Profile';
+import MyCourse from './page/MyCourse';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <MainLayout>
             <ProtectedRoute exact path="/" component={Home} />
             <ProtectedRoute exact path="/profile" component={Profile} />
+            <ProtectedRoute exact path="/my-course" component={MyCourse} />
 
           </MainLayout>
 

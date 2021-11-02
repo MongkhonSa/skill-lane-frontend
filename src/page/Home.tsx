@@ -1,25 +1,30 @@
+import { notification } from 'antd';
+import { useEffect, useState } from 'react';
+import { getCourse } from '../api/courseService';
 import CourseContainer from '../component/CourseContainer';
+import { GetCourseInput, GetCourseOutput } from '../types';
 
-const image = 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png';
-const courseList = [{
-  instructor: 'ผศ. ดร.ธนาธร ทะนานทอง',
-  name: 'Data Mining Algorithms ขั้นตอนวิธีสำหรับเหมืองข้อมูล',
-  image,
-  startDate: new Date(),
-  endDate: new Date(),
-  numberOfStudent: 100,
-},
-{
-  instructor: 'string',
-  name: 'string',
-  image,
-  startDate: new Date(),
-  endDate: new Date(),
+const Home = () => {
+  const [course, setCourse] = useState<GetCourseOutput[]>([]);
+  const fetchCourse = async (input:GetCourseInput) => {
+    const data = await getCourse(input);
+    setCourse(data);
+  };
+  const onFinish = async (input:GetCourseInput) => {
+    try {
+      await fetchCourse(input);
+    } catch (e) {
+      notification.error({ message: 'something went wrong' });
+    }
+  };
 
-},
-];
-const Home = () => (
-  <CourseContainer courseList={courseList} />
-);
+  useEffect(() => {
+    fetchCourse({});
+  }, []);
+  return (
+
+    <CourseContainer courseList={course} onFinish={onFinish} />
+  );
+};
 
 export default Home;

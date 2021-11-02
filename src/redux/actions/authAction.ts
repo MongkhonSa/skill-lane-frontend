@@ -1,6 +1,9 @@
 export interface ILoginAction {
   readonly type: 'LOGIN';
-  readonly payload: string
+  readonly payload: {
+    accessToken:string;
+    roles:string[];
+  }
 }
 export interface ILogoutAction {
   readonly type: 'LOGOUT';

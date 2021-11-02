@@ -69,7 +69,6 @@ const ContentDetailContainer = styled.div`
 
 const Container = styled(Row)`
   width: 100%;
- 
   position: relative;
   background: #fff;
   border-top: 1px solid #E5E5E5;
@@ -81,21 +80,25 @@ const Container = styled(Row)`
 ;
 `;
 type CourseCardProps = {
-  instructor:string
-  name:string;
-  image:string;
-  startDate:Date;
-  endDate:Date;
-  numberOfStudent?:number;
+  name: string;
+  image: string;
+  startTime: Date;
+  endTime: Date;
+  numberOfStudent: number;
+  user:{
+    firstName:string,
+    lastName:string,
+  }
 };
 
 const CourseCardMobile = ({
-  instructor,
-  startDate, endDate,
+  name,
+  image,
+  startTime,
+  endTime,
   numberOfStudent,
-  name, image = 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png',
+  user,
 }:CourseCardProps) => (
-
   <Container>
     <ImageContainer>
       <ContentImage>
@@ -107,11 +110,11 @@ const CourseCardMobile = ({
     <ContentDetailContainer>
       <ContentDetail>
         <Titile>{name}</Titile>
-        <TeacherTitle>{instructor}</TeacherTitle>
+        <TeacherTitle>{`${user.firstName} ${user.lastName}`}</TeacherTitle>
       </ContentDetail>
       <FooterContent>
-        <CourseDate>{`start date: ${dayjs(startDate).format('DD/MM/YY')}`}</CourseDate>
-        <CourseDate>{`end date: ${dayjs(endDate).format('DD/MM/YY')}`}</CourseDate>
+        <CourseDate>{`start date: ${dayjs(startTime).format('DD/MM/YY')}`}</CourseDate>
+        <CourseDate>{`end date: ${dayjs(endTime).format('DD/MM/YY')}`}</CourseDate>
         {numberOfStudent && <CourseDate>{`number of student: ${numberOfStudent}`}</CourseDate>}
       </FooterContent>
     </ContentDetailContainer>

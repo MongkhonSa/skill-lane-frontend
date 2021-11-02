@@ -22,3 +22,31 @@ export type GetProfileOutput = {
 };
 
 export type UpdateProfileInput = GetProfileOutput;
+
+export type GetCourseInput = {
+  name?:string,
+  date?:Date,
+};
+export type GetCourseOutput = {
+  name: string;
+  description: string;
+  category: string;
+  image: string;
+  subject: string;
+  startTime: Date;
+  endTime: Date;
+  numberOfStudent: number;
+  createdAt: Date;
+  user:GetProfileOutput;
+};
+
+export type CreateCourseinput = {
+  name: string;
+  description: string;
+  category: string;
+  image: string;
+  subject: string;
+  startTime: Date;
+  endTime: Date;
+  numberOfStudent: number;
+};

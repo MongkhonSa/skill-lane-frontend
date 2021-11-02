@@ -15,8 +15,8 @@ const Login = () => {
   const history = useHistory();
   const onFinish = async ({ username, password }:LoginInput) => {
     try {
-      const res = await login(username, password);
-      authDispatch({ type: 'LOGIN', payload: res.accessToken });
+      const data = await login(username, password);
+      authDispatch({ type: 'LOGIN', payload: data });
       history.replace('/');
     } catch (e) {
       notification.error({ message: 'something went wrong' });

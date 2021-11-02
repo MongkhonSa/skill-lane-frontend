@@ -1,10 +1,7 @@
-import {
-  Card as C,
-} from 'antd';
 import dayjs from 'dayjs';
 import styled from 'styled-components';
 
-const Card = styled(C)`
+const Card = styled.div`
 font-family: "DBHeavent";
 position: relative;
 width: 210px;
@@ -50,39 +47,62 @@ padding: 0 10px;
 margin-bottom: 10px;
 `;
 
+const Image = styled.img`
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+`;
+const ImageContainer = styled.div`
+  position: relative;
+  padding-bottom: 60%;
+  height: 0px;
+  border-bottom: 1px solid #eee;
+`;
+
+const ImageContent = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+`;
+
 type CourseCardProps = {
-  instructor:string
-  name:string;
-  image:string;
-  startDate:Date;
-  endDate:Date;
-  numberOfStudent?:number;
+  name: string;
+  image: string;
+  startTime: Date;
+  endTime: Date;
+  numberOfStudent: number;
+  user:{
+    firstName:string,
+    lastName:string,
+  }
 };
 
 const CourseCard = ({
-  instructor,
-  startDate, endDate,
+  name,
+  startTime,
+  endTime,
   numberOfStudent,
-  name, image = 'https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png',
+  image,
+  user,
 }:CourseCardProps) => (
-  <Card
-    bodyStyle={{
-      padding: '0px',
-    }}
-    cover={(
-      <img
-        alt="example"
-        src={image}
-      />
-  )}
-  >
+  <Card>
+    <ImageContainer>
+      <ImageContent>
+
+        <Image
+          alt="example"
+          src={image}
+        />
+      </ImageContent>
+    </ImageContainer>
+
     <Content>
       <Titile>{name}</Titile>
-      <TeacherTitle>{instructor}</TeacherTitle>
+      <TeacherTitle>{`${user.firstName} ${user.lastName}`}</TeacherTitle>
     </Content>
     <FooterContent>
-      <CourseDate>{`start date: ${dayjs(startDate).format('DD/MM/YY')}`}</CourseDate>
-      <CourseDate>{`end date: ${dayjs(endDate).format('DD/MM/YY')}`}</CourseDate>
+      <CourseDate>{`start date: ${dayjs(startTime).format('DD/MM/YY')}`}</CourseDate>
+      <CourseDate>{`end date: ${dayjs(endTime).format('DD/MM/YY')}`}</CourseDate>
       {numberOfStudent && <CourseDate>{`number of student: ${numberOfStudent}`}</CourseDate>}
     </FooterContent>
 
